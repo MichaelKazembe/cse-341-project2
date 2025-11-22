@@ -1,28 +1,28 @@
 ###
 # GET All Contacts
-GET http://restaurants-api-iwx3.onrender.com/restaurants
+GET http://localhost:3000/restaurants
 Accept: application/json
 
 ###
 # GET Contact by ID
-GET http://restaurants-api-iwx3.onrender.com/restaurants/1
+GET http://localhost:3000/restaurants/692207b0b859b1b82bae5f5a
 Accept: application/json
 
 ###
 # POST Create New Contact
-POST http://restaurants-api-iwx3.onrender.com/restaurants
+POST http://localhost:3000/restaurants
 Content-Type: application/json
 
 {
-    "name": "New Restaurant",
+    "name": "",
     "cuisine": "Fusion",
     "location": "123 New St, Springfield",
-    "rating": 4.0
+    "rating": "hss"
 }
 
 ###
 # PUT Update Contact by ID
-PUT http://restaurants-api-iwx3.onrender.com/restaurants/
+PUT http://localhost:3000/restaurants/692207b0b859b1b82bae5f5a
 Content-Type: application/json
 {
     "name": "Updated Restaurant",
@@ -33,4 +33,4 @@ Content-Type: application/json
 
 ###
 # DELETE Contact by ID
-DELETE http://restaurants-api-iwx3.onrender.com/restaurants/6921effcecc30f1bf1de8d74
+DELETE http://localhost:3000/restaurants/6921effcecc30f1bf1de8d74

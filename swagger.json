@@ -12,7 +12,7 @@
   },
   "host": "restaurants-api-iwx3.onrender.com",
   "basePath": "/",
-  "schemes": ["https", "http"],
+  "schemes": ["https"],
   "paths": {
     "/": {
       "get": {

@@ -36,8 +36,7 @@ async function getAllrestaurants(req, res) {
  *  Function to handle fetching a single restaurant by ID
  * ************************** */
 async function getRestaurantById(req, res) {
-  //# swagger.tags = ["restaurants"];
-  //# swagger.description = "Get a restaurant by ID";
+
   const restaurantId = req.params.id;
 
   try {
@@ -62,31 +61,8 @@ async function getRestaurantById(req, res) {
  *  Function to handle creating a new restaurant
  * ************************** */
 async function createRestaurant(req, res) {
-  //# swagger.tags = ["restaurants"];
-  //# swagger.description = "Create a new restaurant";
-  // Validate req.body exists
-  if (!req.body) {
-    console.error("req.body is undefined");
-    return res.status(400).json({
-      error:
-        "Request body is empty. Make sure to send JSON data with Content-Type: application/json header.",
-    });
-  }
 
   const newRestaurant = req.body;
-
-  // Validate required fields
-  if (
-    !newRestaurant.name ||
-    !newRestaurant.cuisine ||
-    !newRestaurant.location ||
-    !newRestaurant.rating
-  ) {
-    return res.status(400).json({
-      error:
-        "Missing required fields: name, cuisine,location, and rating are required.",
-    });
-  }
 
   try {
     const database = db.getDatabase();
@@ -109,8 +85,7 @@ async function createRestaurant(req, res) {
  *  Function to handle updating a restaurant by ID
  * ************************** */
 async function updateRestaurantById(req, res) {
-  //# swagger.tags = ["restaurants"];
-  //# swagger.description = "Update a restaurant by ID";
+
   const restaurantId = req.params.id;
 
   // Validate req.body exists
@@ -153,8 +128,7 @@ async function updateRestaurantById(req, res) {
  *  Function to handle deleting a restaurant by ID
  * ************************** */
 async function deleteRestaurantById(req, res) {
-  //# swagger.tags = ["restaurants"];
-  //# swagger.description = "Delete a restaurant by ID";
+
   const restaurantId = req.params.id;
 
   try {

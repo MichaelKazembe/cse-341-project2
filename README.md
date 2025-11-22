@@ -4,7 +4,7 @@ CSE341 - Web Services Project from BYU-Idaho Software Development Degree program
 
 ## View Deployed Site
 
-[Click here to test the API](https://cse-341-project2-gsq2.onrender.com)
+[Click here to test the API](https://restaurants-api-iwx3.onrender.com)
 
 ## Installation
 
