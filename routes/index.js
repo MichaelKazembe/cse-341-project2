@@ -4,8 +4,8 @@
 const router = require("express").Router();
 
 // swagger setup
-// const swaggerRoute = require("./swagger");
-// router.use("/", swaggerRoute);
+const swaggerRoute = require("./swagger");
+router.use("/", swaggerRoute);
 
 // define a Home page route
 router.get("/", (req, res) => {

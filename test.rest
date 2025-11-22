@@ -1,16 +1,16 @@
 ###
 # GET All Contacts
-GET http://localhost:3000/restaurants
+GET http://restaurants-api-iwx3.onrender.com/restaurants
 Accept: application/json
 
 ###
 # GET Contact by ID
-GET http://localhost:3000/restaurants/1
+GET http://restaurants-api-iwx3.onrender.com/restaurants/1
 Accept: application/json
 
 ###
 # POST Create New Contact
-POST http://localhost:3000/restaurants
+POST http://restaurants-api-iwx3.onrender.com/restaurants
 Content-Type: application/json
 
 {
@@ -22,7 +22,7 @@ Content-Type: application/json
 
 ###
 # PUT Update Contact by ID
-PUT http://localhost:3000/restaurants/
+PUT http://restaurants-api-iwx3.onrender.com/restaurants/
 Content-Type: application/json
 {
     "name": "Updated Restaurant",
@@ -33,4 +33,4 @@ Content-Type: application/json
 
 ###
 # DELETE Contact by ID
-DELETE http://localhost:3000/restaurants/6921effcecc30f1bf1de8d74
+DELETE http://restaurants-api-iwx3.onrender.com/restaurants/6921effcecc30f1bf1de8d74

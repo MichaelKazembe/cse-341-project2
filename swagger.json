@@ -1,0 +1,192 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": " Restaurants API",
+    "description": "API documentation for the cse-341 project - Restaurants RESTful API",
+    "version": "1.0.0",
+    "contact": {
+      "name": "Michael Kazembe",
+      "email": "michaelkazembe@gmail.com",
+      "url": "https://github.com/michaelkazembe"
+    }
+  },
+  "host": "restaurants-api-iwx3.onrender.com",
+  "basePath": "/",
+  "schemes": ["https", "http"],
+  "paths": {
+    "/": {
+      "get": {
+        "tags": ["Home"],
+        "summary": "Get welcome message",
+        "description": "Returns a welcome message",
+        "produces": ["text/plain"],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/restaurants/": {
+      "get": {
+        "tags": ["Restaurants"],
+        "summary": "Get all restaurants",
+        "description": "Returns a list of all restaurants",
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "Successfully retrieved list of restaurants"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "post": {
+        "tags": ["Restaurants"],
+        "summary": "Create a new restaurant",
+        "description": "Creates a new restaurant",
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "required": ["name", "cuisine", "location", "rating"],
+              "properties": {
+                "name": {
+                  "example": "Ndiwo Restaurant"
+                },
+                "cuisine": {
+                  "example": "Malawian"
+                },
+                "location": {
+                  "example": "123 Main St, City, State"
+                },
+                "rating": {
+                  "example": "4.0"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/restaurants/{id}": {
+      "get": {
+        "tags": ["Restaurants"],
+        "summary": "Get a restaurant by ID",
+        "description": "Returns a restaurant by ID",
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Restaurant Found"
+          },
+          "404": {
+            "description": "Restaurant Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "put": {
+        "tags": ["Restaurants"],
+        "summary": "Update a restaurant by ID",
+        "description": "Updates a restaurant by ID",
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "example": "Ndiwo Restaurant"
+                },
+                "cuisine": {
+                  "example": "Malawian"
+                },
+                "location": {
+                  "example": "123 Main St, City, State"
+                },
+                "rating": {
+                  "example": "4.0"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Restaurant Updated Successfully"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "delete": {
+        "tags": ["Restaurants"],
+        "summary": "Delete a restaurant by ID",
+        "description": "Deletes a restaurant by ID",
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Restaurant Deleted Successfully"
+          },
+          "404": {
+            "description": "Restaurant Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    }
+  }
+}
