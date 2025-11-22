@@ -1,0 +1,63 @@
+[
+  {
+    "name": "The Gourmet Kitchen",
+    "cuisine": "Italian",
+    "location": "123 Main St, Springfield",
+    "rating": 4.5
+  },
+  {
+    "name": "Sushi World",
+    "cuisine": "Japanese",
+    "location": "456 Elm St, Springfield",
+    "rating": 4.7
+  },
+  {
+    "name": "Taco Fiesta",
+    "cuisine": "Mexican",
+    "location": "789 Oak St, Springfield",
+    "rating": 4.3
+  },
+  {
+    "name": "Curry Palace",
+    "cuisine": "Indian",
+    "location": "321 Pine St, Springfield",
+    "rating": 4.6
+  },
+  {
+   
+    "name": "Burger Barn",
+    "cuisine": "American",
+    "location": "654 Maple St, Springfield",
+    "rating": 4.2
+  },
+  {
+    "name": "Dragon's Delight",
+    "cuisine": "Chinese",
+    "location": "987 Cedar St, Springfield",
+    "rating": 4.4
+  },
+  {
+    "name": "Mediterranean Magic",
+    "cuisine": "Mediterranean",
+    "location": "147 Walnut St, Springfield",
+    "rating": 4.5
+  },
+  {
+    "name": "Vegan Vibes",
+    "cuisine": "Vegan",
+    "location": "258 Birch St, Springfield",
+    "rating": 4.8
+  },
+  {
+    "name": "BBQ Haven",
+    "cuisine": "Barbecue",
+    "location": "369 Chestnut St, Springfield",
+    "rating": 4.3
+  },
+  {
+    "name": "French Bistro",
+    "cuisine": "French",
+    "location": "159 Spruce St, Springfield",
+    "rating": 4.6
+  }
+]

@@ -1,0 +1,36 @@
+###
+# GET All Contacts
+GET http://localhost:3000/restaurants
+Accept: application/json
+
+###
+# GET Contact by ID
+GET http://localhost:3000/restaurants/1
+Accept: application/json
+
+###
+# POST Create New Contact
+POST http://localhost:3000/restaurants
+Content-Type: application/json
+
+{
+    "name": "New Restaurant",
+    "cuisine": "Fusion",
+    "location": "123 New St, Springfield",
+    "rating": 4.0
+}
+
+###
+# PUT Update Contact by ID
+PUT http://localhost:3000/restaurants/
+Content-Type: application/json
+{
+    "name": "Updated Restaurant",
+    "cuisine": "Updated Cuisine",
+    "location": "456 Updated St, Springfield",
+    "rating": 4.5
+}
+
+###
+# DELETE Contact by ID
+DELETE http://localhost:3000/restaurants/6921effcecc30f1bf1de8d74
