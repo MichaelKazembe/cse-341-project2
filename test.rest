@@ -1,6 +1,6 @@
 ###
 # GET All Contacts
-GET http://localhost:3000/restaurants
+GET https://restaurants-api-iwx3.onrender.com/restaurants
 Accept: application/json
 
 ###
@@ -14,10 +14,34 @@ POST http://localhost:3000/restaurants
 Content-Type: application/json
 
 {
-    "name": "",
+    "name": "New Restaurant",
     "cuisine": "Fusion",
     "location": "123 New St, Springfield",
-    "rating": "hss"
+    "rating": 3.5
+}
+
+###
+# POST Create New Contact Invalid (missing name)
+POST http://localhost:3000/restaurants
+Content-Type: application/json
+
+{
+    "name": "",
+    "cuisine": "",
+    "location": "123 New St, Springfield",
+    "rating": 3.5
+}
+
+###
+# POST Create New Contact Invalid (rating out of range)
+POST http://localhost:3000/restaurants
+Content-Type: application/json
+
+{
+    "name": "Rest 2",
+    "cuisine": "Fusion",
+    "location": "123 New St, Springfield",
+    "rating": 7
 }
 
 ###
@@ -26,6 +50,17 @@ PUT http://localhost:3000/restaurants/692207b0b859b1b82bae5f5a
 Content-Type: application/json
 {
     "name": "Updated Restaurant",
+    "cuisine": "Updated Cuisine",
+    "location": "456 Updated St, Springfield",
+    "rating": 4.5
+}
+
+###
+# PUT Update Contact Invalid (name too short)
+PUT http://localhost:3000/restaurants/692207b0b859b1b82bae5f5a
+Content-Type: application/json
+{
+    "name": "Up",
     "cuisine": "Updated Cuisine",
     "location": "456 Updated St, Springfield",
     "rating": 4.5

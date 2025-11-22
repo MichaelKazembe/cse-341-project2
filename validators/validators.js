@@ -1,5 +1,3 @@
-// validator.js
-
 const { body, validationResult } = require("express-validator");
 
 // Validator for restaurant data
@@ -15,11 +13,11 @@ const bodyValidationRules = () => {
       .withMessage("Cuisine type is required")
       .isLength({ min: 3 })
       .withMessage("Cuisine type must be at least 3 characters long"),
-    body("address")
+    body("location")
       .notEmpty()
-      .withMessage("Address is required")
+      .withMessage("Location is required")
       .isLength({ min: 5 })
-      .withMessage("Address must be at least 5 characters long"),
+      .withMessage("Location must be at least 5 characters long"),
     body("rating")
       .notEmpty()
       .withMessage("Rating is required")
@@ -32,7 +30,9 @@ const bodyValidationRules = () => {
 const validate = (req, res, next) => {
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
-    return res.status(400).json({ errors: errors.array().map(err => err.msg) });
+    return res
+      .status(400)
+      .json({ errors: errors.array().map((err) => err.msg) });
   }
   next();
 };
