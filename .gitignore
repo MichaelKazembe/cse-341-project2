@@ -4,3 +4,4 @@ dist
 .DS_Store
 .vscode
 TODO.md
+./data/users.json
