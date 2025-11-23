@@ -28,6 +28,7 @@ async function initializeDB(callback) {
     // Set the database instance
     database = client.db();
     console.log("Connected to MongoDB");
+    
     // Invoke the callback with no error
     callback(null, database);
   } catch (err) {

@@ -9,6 +9,8 @@ const bodyParser = require("body-parser");
 // Import routes
 const homeRoute = require("./routes");
 const restaurantsRoute = require("./routes/restaurants");
+const usersRoute = require("./routes/users");
+const swaggerRoute = require("./routes/swagger");
 
 const mongodb = require("./models/database");
 
@@ -53,6 +55,12 @@ app.use("/", homeRoute);
 
 // define `restaurants` route for all restaurants
 app.use("/restaurants", restaurantsRoute);
+
+// define `users` route for all restaurants
+app.use("/users", usersRoute);
+
+// mount swagger UI routes at /api-docs
+app.use("/api-docs", swaggerRoute);
 
 // 404 Error Handling Middleware
 app.use((req, res, next) => {

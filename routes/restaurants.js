@@ -3,7 +3,10 @@
 // handle routes
 const router = require("express").Router();
 // import input validators
-const {  bodyValidationRules, validate } = require("../validators/validators");
+const {
+  restaurantValidationRules,
+  validateRestaurant,
+} = require("../validators/restaurantValidators");
 
 // import restaurants controller
 const restaurantsController = require("../controllers/restaurantsController");
@@ -15,10 +18,20 @@ router.get("/", restaurantsController.getAllrestaurants);
 router.get("/:id", restaurantsController.getRestaurantById);
 
 // define a route to create a new restaurant
-router.post("/", bodyValidationRules(), validate, restaurantsController.createRestaurant);
+router.post(
+  "/",
+  restaurantValidationRules(),
+  validateRestaurant,
+  restaurantsController.createRestaurant
+);
 
 // define a route to update a restaurant by ID
-router.put("/:id", bodyValidationRules(), validate, restaurantsController.updateRestaurantById);
+router.put(
+  "/:id",
+  restaurantValidationRules(),
+  validateRestaurant,
+  restaurantsController.updateRestaurantById
+);
 
 // define a route to delete a restaurant by ID
 router.delete("/:id", restaurantsController.deleteRestaurantById);

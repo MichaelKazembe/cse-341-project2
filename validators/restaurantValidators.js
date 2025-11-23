@@ -1,7 +1,7 @@
 const { body, validationResult } = require("express-validator");
 
 // Validator for restaurant data
-const bodyValidationRules = () => {
+const restaurantValidationRules = () => {
   return [
     body("name")
       .notEmpty()
@@ -26,8 +26,8 @@ const bodyValidationRules = () => {
   ];
 };
 
-// Middleware to validate request body
-const validate = (req, res, next) => {
+// Middleware to validateRestaurant request body
+const validateRestaurant = (req, res, next) => {
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
     return res
@@ -40,6 +40,6 @@ const validate = (req, res, next) => {
 // Export the validator middleware
 
 module.exports = {
-  bodyValidationRules,
-  validate,
+  restaurantValidationRules,
+  validateRestaurant,
 };

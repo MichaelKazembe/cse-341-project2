@@ -9,8 +9,6 @@ const { ObjectId } = require("mongodb");
  *  Function to handle fetching ALL restaurants
  * ************************** */
 async function getAllrestaurants(req, res) {
-  //# swagger.tags = ["restaurants"];
-  //# swagger.description = "Get all restaurants";
   try {
     // Get the database instance
     const database = db.getDatabase();
@@ -20,6 +18,9 @@ async function getAllrestaurants(req, res) {
 
     // Convert the cursor to an array
     const restaurantsArray = await restaurants.toArray();
+
+    // Display The Collection
+    console.log("Fetched restaurants:", restaurantsArray);
 
     // Set the response header to application/json
     res.setHeader("Content-Type", "application/json");
@@ -36,11 +37,16 @@ async function getAllrestaurants(req, res) {
  *  Function to handle fetching a single restaurant by ID
  * ************************** */
 async function getRestaurantById(req, res) {
-
   const restaurantId = req.params.id;
 
   try {
     const database = db.getDatabase();
+
+    // Check if restaurantId is a valid ObjectId
+    if (!ObjectId.isValid(restaurantId)) {
+      return res.status(400).json({ error: "Invalid restaurant ID format" });
+    }
+
     const restaurant = await database
       .collection("restaurants")
       .findOne({ _id: new ObjectId(restaurantId) });
@@ -61,7 +67,6 @@ async function getRestaurantById(req, res) {
  *  Function to handle creating a new restaurant
  * ************************** */
 async function createRestaurant(req, res) {
-
   const newRestaurant = req.body;
 
   try {
@@ -85,7 +90,6 @@ async function createRestaurant(req, res) {
  *  Function to handle updating a restaurant by ID
  * ************************** */
 async function updateRestaurantById(req, res) {
-
   const restaurantId = req.params.id;
 
   // Validate req.body exists
@@ -128,7 +132,6 @@ async function updateRestaurantById(req, res) {
  *  Function to handle deleting a restaurant by ID
  * ************************** */
 async function deleteRestaurantById(req, res) {
-
   const restaurantId = req.params.id;
 
   try {

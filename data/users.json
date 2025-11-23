@@ -1,0 +1,92 @@
+[
+  {
+    "firstname": "Michael",
+    "lastname": "Kazembe",
+    "email": "michael@example.com",
+    "age": "24",
+    "password": "qw2(ajaj",
+    "address": "123 Area 18A Lilongwe Malawi",
+    "role": "admin"
+  },
+  {
+    "firstname": "Sarah",
+    "lastname": "Miller",
+    "email": "sarah.miller@example.com",
+    "age": "29",
+    "password": "saR29$ml",
+    "address": "456 Meadow Lane, Austin, TX, USA",
+    "role": "user"
+  },
+  {
+    "firstname": "John",
+    "lastname": "Doe",
+    "email": "john.doe@example.com",
+    "age": "33",
+    "password": "jd33*pass",
+    "address": "789 Sunset Blvd, Los Angeles, CA, USA",
+    "role": "user"
+  },
+  {
+    "firstname": "Emma",
+    "lastname": "Johnson",
+    "email": "emma.johnson@example.com",
+    "age": "27",
+    "password": "eJ27!pass",
+    "address": "12 Oak Street, Boston, MA, USA",
+    "role": "user"
+  },
+  {
+    "firstname": "David",
+    "lastname": "Smith",
+    "email": "david.smith@example.com",
+    "age": "31",
+    "password": "davS31#pw",
+    "address": "345 Pine Road, Chicago, IL, USA",
+    "role": "user"
+  },
+  {
+    "firstname": "Olivia",
+    "lastname": "Brown",
+    "email": "olivia.brown@example.com",
+    "age": "26",
+    "password": "oB26*@pw",
+    "address": "678 Willow Ave, Seattle, WA, USA",
+    "role": "user"
+  },
+  {
+    "firstname": "James",
+    "lastname": "Wilson",
+    "email": "james.wilson@example.com",
+    "age": "35",
+    "password": "jw35$pw",
+    "address": "901 Cherry Street, Denver, CO, USA",
+    "role": "user"
+  },
+  {
+    "firstname": "Ava",
+    "lastname": "Lee",
+    "email": "ava.lee@example.com",
+    "age": "28",
+    "password": "aL28!pw",
+    "address": "234 Maple Drive, Miami, FL, USA",
+    "role": "user"
+  },
+  {
+    "firstname": "William",
+    "lastname": "Taylor",
+    "email": "william.taylor@example.com",
+    "age": "30",
+    "password": "wt30^pw",
+    "address": "789 Birch Street, Portland, OR, USA",
+    "role": "user"
+  },
+  {
+    "firstname": "Sophia",
+    "lastname": "Martinez",
+    "email": "sophia.martinez@example.com",
+    "age": "25",
+    "password": "sm25!pw",
+    "address": "567 Cedar Ave, San Francisco, CA, USA",
+    "role": "user"
+  }
+]

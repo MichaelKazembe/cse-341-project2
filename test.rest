@@ -1,15 +1,142 @@
+########################
+# TEST FOR USERS
+########################
+
 ###
-# GET All Contacts
-GET https://restaurants-api-iwx3.onrender.com/restaurants
+# GET All Users
+GET http://localhost:3000/users
 Accept: application/json
 
 ###
-# GET Contact by ID
-GET http://localhost:3000/restaurants/692207b0b859b1b82bae5f5a
+# GET User by ID
+GET http://localhost:3000/users/692367338e5dd8100f3b7bff
 Accept: application/json
 
 ###
-# POST Create New Contact
+# POST Create New User - Valid
+POST http://localhost:3000/users
+Content-Type: application/json
+
+{
+    "firstname": "Alice",
+    "lastname": "Wonderland",
+    "email": "alice@example.com",
+    "age": "30",
+    "password": "alice123",
+    "address": "123 Fantasy Way, Imagination City",
+    "role": "user"
+}
+
+###
+# POST Create New User - Invalid (Empty firstname)
+POST http://localhost:3000/users
+Content-Type: application/json
+
+{
+    "firstname": "",
+    "lastname": "Wonderland",
+    "email": "alice@example.com",
+    "age": "30",
+    "password": "alice123",
+    "address": "123 Fantasy Way, Imagination City",
+    "role": "user"
+}
+
+###
+# POST Create New User - Invalid (Invalid Email)
+POST http://localhost:3000/users
+Content-Type: application/json
+
+{
+    "firstname": "Alice",
+    "lastname": "Wonderland",
+    "email": "aliceexample.com",
+    "age": "30",
+    "password": "alice123",
+    "address": "123 Fantasy Way, Imagination City",
+    "role": "user"
+}
+
+###
+# POST Create New User - Invalid (Short Password)
+POST http://localhost:3000/users
+Content-Type: application/json
+
+{
+    "firstname": "Alice",
+    "lastname": "Wonderland",
+    "email": "alice@example.com",
+    "age": "30",
+    "password": "123",
+    "address": "123 Fantasy Way, Imagination City",
+    "role": "user"
+}
+
+###
+# PUT Update User by ID - Valid
+PUT http://localhost:3000/users/69236814cc792749b71e3cc7
+Content-Type: application/json
+
+{
+    "firstname": "Alice",
+    "lastname": "Smith",
+    "email": "alice.smith@example.com",
+    "age": "31",
+    "password": "newpass123",
+    "address": "456 Changed St, Imagination City",
+    "role": "admin"
+}
+
+###
+# PUT Update User by ID - Invalid (Empty lastname)
+PUT http://localhost:3000/users/1234567890abcdef12345678
+Content-Type: application/json
+
+{
+    "firstname": "Alice",
+    "lastname": "",
+    "email": "alice.smith@example.com",
+    "age": "31",
+    "password": "newpass123",
+    "address": "456 Changed St, Imagination City",
+    "role": "admin"
+}
+
+###
+# PUT Update User by ID - Invalid (Invalid Role)
+PUT http://localhost:3000/users/1234567890abcdef12345678
+Content-Type: application/json
+
+{
+    "firstname": "Alice",
+    "lastname": "Smith",
+    "email": "alice.smith@example.com",
+    "age": "31",
+    "password": "newpass123",
+    "address": "456 Changed St, Imagination City",
+    "role": "superuser"
+}
+
+###
+# DELETE User by ID
+DELETE http://localhost:3000/users/1234567890abcdef12345678
+
+########################
+# TEST FOR RESTAURANTS
+########################
+
+###
+# GET All Restaurants
+GET http://localhost:3000/restaurants
+Accept: application/json
+
+###
+# GET Restaurant by ID
+GET http://localhost:3000/restaurants/69234ab09f0ba69145811379
+Accept: application/json
+
+###
+# POST Create New Restaurant - Valid
 POST http://localhost:3000/restaurants
 Content-Type: application/json
 
@@ -21,7 +148,7 @@ Content-Type: application/json
 }
 
 ###
-# POST Create New Contact Invalid (missing name)
+# POST Create New Restaurant - Invalid (missing name)
 POST http://localhost:3000/restaurants
 Content-Type: application/json
 
@@ -33,7 +160,19 @@ Content-Type: application/json
 }
 
 ###
-# POST Create New Contact Invalid (rating out of range)
+# POST Create New Restaurant - Missing Location (Invalid)
+POST http://localhost:3000/restaurants
+Content-Type: application/json
+
+{
+    "name": "New Restaurant",
+    "cuisine": "Fusion",
+    "location": "",
+    "rating": 4
+}
+
+###
+# POST Create New Restaurant - Invalid (rating out of range)
 POST http://localhost:3000/restaurants
 Content-Type: application/json
 
@@ -45,7 +184,7 @@ Content-Type: application/json
 }
 
 ###
-# PUT Update Contact by ID
+# PUT Update Restaurant by ID - Valid
 PUT http://localhost:3000/restaurants/692207b0b859b1b82bae5f5a
 Content-Type: application/json
 {
@@ -56,7 +195,18 @@ Content-Type: application/json
 }
 
 ###
-# PUT Update Contact Invalid (name too short)
+# PUT Update Restaurant - Rating Out of Range (Invalid)
+PUT http://localhost:3000/restaurants/69234ab09f0ba69145811379
+Content-Type: application/json
+{
+    "name": "Updated Restaurant",
+    "cuisine": "Updated Cuisine",
+    "location": "456 Updated St, Springfield",
+    "rating": 10
+}
+
+###
+# PUT Update Restaurant - Name Too Short (Invalid)
 PUT http://localhost:3000/restaurants/692207b0b859b1b82bae5f5a
 Content-Type: application/json
 {
@@ -67,5 +217,5 @@ Content-Type: application/json
 }
 
 ###
-# DELETE Contact by ID
-DELETE http://localhost:3000/restaurants/6921effcecc30f1bf1de8d74
+# DELETE Restaurant by ID
+DELETE http://localhost:3000/restaurants/692207b0b859b1b82bae5f5a
