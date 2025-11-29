@@ -37,19 +37,29 @@ The server will start on `http://localhost:3000` by default.
 
 ## API Documentation
 
-This is a RESTful API for managing restaurants. Below are the available endpoints.
+This is a RESTful API for managing restaurants and users. Below are the available endpoints.
 
-### Endpoints
+### Endpoints for Restaurants
 
-| Method | Endpoint         | Description                        | Parameters                                                                 | Response                                                                                                                                |
-| ------ | ---------------- | ---------------------------------- | -------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------- |
-| GET    | /restaurants     | Retrieve all restaurants           | None                                                                       | 200 OK: JSON array of restaurants<br>500 Internal Server Error: On failure                                                              |
-| GET    | /restaurants/:id | Retrieve a single restaurant by ID | id (string): Contact ID                                                    | 200 OK: JSON object of the restaurant<br>404 Not Found: If restaurant not found<br>500 Internal Server Error: On failure                |
-| POST   | /restaurants     | Create a new restaurant            | None (body: JSON with firstName, lastName, email, favoriteColor, birthday) | 201 Created: JSON with message and restaurantId<br>400 Bad Request: If required fields missing<br>500 Internal Server Error: On failure |
-| PUT    | /restaurants/:id | Update a restaurant by ID          | id (string): Contact ID (body: JSON with fields to update)                 | 200 OK: JSON with message<br>404 Not Found: If restaurant not found<br>500 Internal Server Error: On failure                            |
-| DELETE | /restaurants/:id | Delete a restaurant by ID          | id (string): Contact ID                                                    | 200 OK: JSON with message<br>404 Not Found: If restaurant not found<br>500 Internal Server Error: On failure                            |
+| Method | Endpoint         | Description                        | Parameters                                                    | Response                                                                                                                                |
+| ------ | ---------------- | ---------------------------------- | ------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------- |
+| GET    | /restaurants     | Retrieve all restaurants           | None                                                          | 200 OK: JSON array of restaurants<br>500 Internal Server Error: On failure                                                              |
+| GET    | /restaurants/:id | Retrieve a single restaurant by ID | id (string): Restaurant ID                                    | 200 OK: JSON object of the restaurant<br>404 Not Found: If restaurant not found<br>500 Internal Server Error: On failure                |
+| POST   | /restaurants     | Create a new restaurant            | None (body: JSON with name, cuisine, location, rating)        | 201 Created: JSON with message and restaurantId<br>400 Bad Request: If required fields missing<br>500 Internal Server Error: On failure |
+| PUT    | /restaurants/:id | Update a restaurant by ID          | id (string): Restaurant ID (body: JSON with fields to update) | 200 OK: JSON with message<br>404 Not Found: If restaurant not found<br>500 Internal Server Error: On failure                            |
+| DELETE | /restaurants/:id | Delete a restaurant by ID          | id (string): Restaurant ID                                    | 200 OK: JSON with message<br>404 Not Found: If restaurant not found<br>500 Internal Server Error: On failure                            |
 
-### Example Requests
+### Endpoints for Users
+
+| Method | Endpoint   | Description                  | Parameters                                                                      | Response                                                                                                                              |
+| ------ | ---------- | ---------------------------- | ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------- |
+| GET    | /users     | Retrieve all users           | None                                                                            | 200 OK: JSON array of users<br>500 Internal Server Error: On failure                                                                  |
+| GET    | /users/:id | Retrieve a single user by ID | id (string): User ID                                                            | 200 OK: JSON object of the user<br>404 Not Found: If user not found<br>500 Internal Server Error: On failure                          |
+| POST   | /users     | Create a new user            | None (body: JSON with firstname, lastname, email, age, password, address, role) | 201 Created: JSON with message and userId<br>400 Bad Request: If required fields missing or invalid data<br>500 Internal Server Error |
+| PUT    | /users/:id | Update a user by ID          | id (string): User ID (body: JSON with fields to update)                         | 200 OK: JSON with message<br>404 Not Found: If user not found<br>500 Internal Server Error: On failure                                |
+| DELETE | /users/:id | Delete a user by ID          | id (string): User ID                                                            | 200 OK: JSON with message<br>404 Not Found: If user not found<br>500 Internal Server Error: On failure                                |
+
+### Example Requests for Restaurants
 
 - Get all restaurants:
 
@@ -70,11 +80,10 @@ This is a RESTful API for managing restaurants. Below are the available endpoint
   Content-Type: application/json
 
   {
-    "firstName": "John",
-    "lastName": "Doe",
-    "email": "john.doe@example.com",
-    "favoriteColor": "blue",
-    "birthday": "1990-01-01"
+    "name": "Ndiwo Restaurant",
+    "cuisine": "Malawian",
+    "location": "123 Main St, City, State",
+    "rating": 4
   }
   ```
 
@@ -85,21 +94,76 @@ This is a RESTful API for managing restaurants. Below are the available endpoint
   Content-Type: application/json
 
   {
-    "name": "string",
-    "cuisine": "string",
-    "location": "string",
-    "rating": "integer"
+    "name": "Updated Restaurant",
+    "cuisine": "Updated Cuisine",
+    "location": "456 Updated St, Springfield",
+    "rating": 4.5
   }
   ```
 
 - Delete a restaurant:
+
   ```
   DELETE http://localhost:3000/restaurants/6907af3f6fe7c98d51ae9570
   ```
 
+### Example Requests for Users
+
+- Get all users:
+
+  ```
+  GET http://localhost:3000/users
+  ```
+
+- Get a single user:
+
+  ```
+  GET http://localhost:3000/users/692367338e5dd8100f3b7bff
+  ```
+
+- Create a new user:
+
+  ```
+  POST http://localhost:3000/users
+  Content-Type: application/json
+
+  {
+    "firstname": "Michael",
+    "lastname": "Kazembe",
+    "email": "michael@example.com",
+    "age": "24",
+    "password": "qw2(ajaj",
+    "address": "123 Area 18A Lilongwe Malawi",
+    "role": "admin"
+  }
+  ```
+
+- Update a user:
+
+  ```
+  PUT http://localhost:3000/users/692367338e5dd8100f3b7bff
+  Content-Type: application/json
+
+  {
+    "firstname": "Michael",
+    "lastname": "Kazembe",
+    "email": "michael@example.com",
+    "age": "25",
+    "password": "newpass123",
+    "address": "123 Area 18A Lilongwe Malawi",
+    "role": "user"
+  }
+  ```
+
+- Delete a user:
+
+  ```
+  DELETE http://localhost:3000/users/692367338e5dd8100f3b7bff
+  ```
+
 ### Response Format
 
-Contacts are returned in JSON format with the following structure:
+Restaurants are returned in JSON format with the following structure:
 
 ```json
 {
@@ -110,6 +174,34 @@ Contacts are returned in JSON format with the following structure:
   "rating": "integer"
 }
 ```
+
+Users are returned in JSON format with the following structure:
+
+```json
+{
+  "_id": "string",
+  "firstname": "string",
+  "lastname": "string",
+  "email": "string",
+  "age": "string",
+  "password": "string",
+  "address": "string",
+  "role": "string"
+}
+```
+
+## Testing the API
+
+Testing for the API is included in the `test.rest` file, located in the root directory. It contains REST client test cases for both restaurants and users. The test cases cover all CRUD operations including valid and invalid data scenarios.
+
+To run these tests, you can use Visual Studio Code with the REST Client extension. Open the `test.rest` file and execute the requests individually or as a group.
+
+## API Documentation with Swagger
+
+This project includes interactive API documentation using Swagger UI.
+
+- To view the Swagger UI, navigate to: `http://localhost:3000/api-docs` when the server is running.
+- The Swagger UI provides detailed documentation of all API endpoints, request/response schemas, and allows you to test endpoints interactively.
 
 ## Technologies Used
 

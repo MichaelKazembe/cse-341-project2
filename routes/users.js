@@ -8,6 +8,9 @@ const {
   validateUser,
 } = require("../validators/userValidators");
 
+// import authenticator
+const { isAuthenticated } = require("../middleware/authenticate");
+
 // import users controller
 const usersController = require("../controllers/usersController");
 
@@ -17,9 +20,9 @@ router.get("/", usersController.getAllUsers);
 // define a users page route for a single users by ID
 router.get("/:id", usersController.getUserById);
 
-// define a route to create a new users
 router.post(
   "/",
+  isAuthenticated,
   userValidationRules(),
   validateUser,
   usersController.createUser
@@ -28,12 +31,13 @@ router.post(
 // define a route to update a users by ID
 router.put(
   "/:id",
+  isAuthenticated,
   userValidationRules(),
   validateUser,
   usersController.updateUserById
 );
 
 // define a route to delete a users by ID
-router.delete("/:id", usersController.deleteUserById);
+router.delete("/:id", isAuthenticated, usersController.deleteUserById);
 
 module.exports = router;

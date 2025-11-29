@@ -2,6 +2,10 @@
 
 // Import the Express framework
 const express = require("express");
+const passport = require("passport");
+const session = require("express-session");
+const GitHubStrategy = require("passport-github2").Strategy;
+const cors = require("cors");
 
 // Import the body-parser middleware
 const bodyParser = require("body-parser");
@@ -11,6 +15,9 @@ const homeRoute = require("./routes");
 const restaurantsRoute = require("./routes/restaurants");
 const usersRoute = require("./routes/users");
 const swaggerRoute = require("./routes/swagger");
+
+// Import authenticator
+const { isAuthenticated } = require("./middleware/authenticate");
 
 const mongodb = require("./models/database");
 
@@ -31,6 +38,19 @@ const PORT = process.env.PORT || 3000;
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
+app.use(
+  session({
+    secret: "secret",
+    resave: false,
+    saveUninitialized: true,
+  })
+);
+
+// basic express session({...}) initialization
+app.use(passport.initialize());
+// initialize passport on every route call
+app.use(passport.session());
+
 // CORS Middleware to allow cross-origin requests
 app.use((req, res, next) => {
   res.setHeader("Access-Control-Allow-Origin", "*");
@@ -44,6 +64,46 @@ app.use((req, res, next) => {
   );
   next();
 });
+
+app.use(cors());
+
+passport.use(
+  new GitHubStrategy(
+    {
+      clientID: process.env.GITHUB_CLIENT_ID,
+      clientSecret: process.env.GITHUB_CLIENT_SECRET,
+      callbackURL: process.env.CALLBACK_URL,
+    },
+    function (accessToken, refreshToken, profile, done) {
+      // User.findCreate({ githubId: profile.id }, function (err, user){
+      return done(null, profile);
+      // })
+    }
+  )
+);
+
+app.get("/", (req, res) => {
+  res.send(
+    req.session.user !== undefined
+      ? `Logged in as ${req.session.user.displayName}`
+      : `Logged out`
+  );
+});
+
+app.get(
+  "/github/callback",
+  passport.authenticate("github", {
+    failureRedirect: "/api-docs",
+    session: false,
+  }),
+  (req, res) => {
+    req.session.user = req.user;
+    res.redirect("/");
+  }
+);
+
+// Login route to initiate GitHub OAuth
+app.get("/login", passport.authenticate("github"));
 
 /** ***************************
  * Mount routes
