@@ -10,9 +10,9 @@
       "url": "https://github.com/michaelkazembe"
     }
   },
-  "host": "localhost:3000",
+  "host": "restaurants-api-iwx3.onrender.com",
   "basePath": "/",
-  "schemes": ["http"],
+  "schemes": ["https"],
   "paths": {
     "/restaurants/": {
       "get": {
@@ -212,7 +212,15 @@
             "required": true,
             "schema": {
               "type": "object",
-              "required": ["firstname", "lastname", "email", "age", "password", "address", "role"],
+              "required": [
+                "firstname",
+                "lastname",
+                "email",
+                "age",
+                "password",
+                "address",
+                "role"
+              ],
               "properties": {
                 "firstname": {
                   "type": "string",
