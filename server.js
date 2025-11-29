@@ -6,6 +6,7 @@ const passport = require("passport");
 const session = require("express-session");
 const GitHubStrategy = require("passport-github2").Strategy;
 const cors = require("cors");
+require("dotenv").config();
 
 // Import the body-parser middleware
 const bodyParser = require("body-parser");
@@ -15,9 +16,6 @@ const homeRoute = require("./routes");
 const restaurantsRoute = require("./routes/restaurants");
 const usersRoute = require("./routes/users");
 const swaggerRoute = require("./routes/swagger");
-
-// Import authenticator
-const { isAuthenticated } = require("./middleware/authenticate");
 
 const mongodb = require("./models/database");
 
@@ -46,9 +44,9 @@ app.use(
   })
 );
 
-// basic express session({...}) initialization
-app.use(passport.initialize());
 // initialize passport on every route call
+app.use(passport.initialize());
+// enable persistent login with passportjs
 app.use(passport.session());
 
 // CORS Middleware to allow cross-origin requests
@@ -56,7 +54,7 @@ app.use((req, res, next) => {
   res.setHeader("Access-Control-Allow-Origin", "*");
   res.setHeader(
     "Access-Control-Allow-Headers",
-    "Origin, X-Requested-With, Content-Type, Accept, Authorization"
+    "Origin, X-Requested-With, Content-Type, Accept, Z-key, Authorization"
   );
   res.setHeader(
     "Access-Control-Allow-Methods",
@@ -65,7 +63,8 @@ app.use((req, res, next) => {
   next();
 });
 
-app.use(cors());
+app.use(cors({ methods: ["GET, POST, PUT, PATCH, DELETE, OPTIONS"] }));
+app.use(cors({ origin: "*" }));
 
 passport.use(
   new GitHubStrategy(
@@ -75,18 +74,25 @@ passport.use(
       callbackURL: process.env.CALLBACK_URL,
     },
     function (accessToken, refreshToken, profile, done) {
-      // User.findCreate({ githubId: profile.id }, function (err, user){
       return done(null, profile);
-      // })
     }
   )
 );
 
+// Serialize and Deserialize a user
+passport.serializeUser((user, done) => {
+  done(nill, user);
+});
+
+passport.serializeUser((user, done) => {
+  done(nill, user);
+});
+
 app.get("/", (req, res) => {
   res.send(
     req.session.user !== undefined
-      ? `Logged in as ${req.session.user.displayName}`
-      : `Logged out`
+      ? `Logged In as ${req.session.user.displayName}`
+      : `Logged Out`
   );
 });
 
@@ -101,9 +107,6 @@ app.get(
     res.redirect("/");
   }
 );
-
-// Login route to initiate GitHub OAuth
-app.get("/login", passport.authenticate("github"));
 
 /** ***************************
  * Mount routes

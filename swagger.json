@@ -1,28 +1,22 @@
 {
   "swagger": "2.0",
   "info": {
-    "title": "Restaurants API",
-    "description": "API documentation for the cse-341 project - Restaurants RESTful API",
-    "version": "1.0.0",
-    "contact": {
-      "name": "Michael Kazembe",
-      "email": "michaelkazembe@gmail.com",
-      "url": "https://github.com/michaelkazembe"
-    }
+    "title": " Restaurants API",
+    "description": "API documentation for the cse-341 project 2 - Restaurants RESTful API",
+    "version": "1.0.0"
   },
-  "host": "restaurants-api-iwx3.onrender.com",
+  "host": "localhost:3000",
   "basePath": "/",
-  "schemes": ["https"],
+  "schemes": [
+    "http"
+  ],
   "paths": {
-    "/restaurants/": {
+    "/": {
       "get": {
-        "tags": ["Restaurants"],
-        "summary": "Get all restaurants",
-        "description": "Returns a list of all restaurants",
-        "produces": ["application/json"],
+        "description": "",
         "responses": {
           "200": {
-            "description": "Successfully retrieved list of restaurants"
+            "description": "OK"
           },
           "500": {
             "description": "Internal Server Error"
@@ -30,38 +24,82 @@
         }
       },
       "post": {
-        "tags": ["Restaurants"],
-        "summary": "Create a new restaurant",
-        "description": "Creates a new restaurant",
-        "produces": ["application/json"],
-        "parameters": [
-          {
-            "name": "body",
-            "in": "body",
-            "required": true,
-            "schema": {
-              "type": "object",
-              "required": ["name", "cuisine", "location", "rating"],
-              "properties": {
-                "name": {
-                  "type": "string",
-                  "example": "Ndiwo Restaurant"
-                },
-                "cuisine": {
-                  "type": "string",
-                  "example": "Malawian"
-                },
-                "location": {
-                  "type": "string",
-                  "example": "123 Main St, City, State"
-                },
-                "rating": {
-                  "type": "number",
-                  "example": 4
-                }
-              }
-            }
+        "description": "",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "500": {
+            "description": "Internal Server Error"
           }
+        }
+      }
+    },
+    "/github/callback": {
+      "get": {
+        "description": "",
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/login": {
+      "get": {
+        "description": "",
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/logout": {
+      "get": {
+        "description": "",
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/api-docs": {
+      "get": {
+        "description": "",
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/restaurants/": {
+      "get": {
+        "description": "",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "post": {
+        "description": "",
+        "produces": [
+          "application/json"
         ],
         "responses": {
           "201": {
@@ -78,25 +116,27 @@
     },
     "/restaurants/{id}": {
       "get": {
-        "tags": ["Restaurants"],
-        "summary": "Get a restaurant by ID",
-        "description": "Returns a restaurant by ID",
-        "produces": ["application/json"],
+        "description": "",
+        "produces": [
+          "application/json"
+        ],
         "parameters": [
           {
             "name": "id",
             "in": "path",
-            "description": "Restaurant ID",
             "required": true,
             "type": "string"
           }
         ],
         "responses": {
           "200": {
-            "description": "Restaurant Found"
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
           },
           "404": {
-            "description": "Restaurant Not Found"
+            "description": "Not Found"
           },
           "500": {
             "description": "Internal Server Error"
@@ -104,40 +144,34 @@
         }
       },
       "put": {
-        "tags": ["Restaurants"],
-        "summary": "Update a restaurant by ID",
-        "description": "Updates a restaurant by ID",
-        "produces": ["application/json"],
+        "description": "",
+        "produces": [
+          "application/json"
+        ],
         "parameters": [
           {
             "name": "id",
             "in": "path",
-            "description": "Restaurant ID",
             "required": true,
             "type": "string"
           },
           {
             "name": "body",
             "in": "body",
-            "required": true,
             "schema": {
               "type": "object",
               "properties": {
                 "name": {
-                  "type": "string",
-                  "example": "Ndiwo Restaurant"
+                  "example": "any"
                 },
                 "cuisine": {
-                  "type": "string",
-                  "example": "Malawian"
+                  "example": "any"
                 },
                 "location": {
-                  "type": "string",
-                  "example": "123 Main St, City, State"
+                  "example": "any"
                 },
                 "rating": {
-                  "type": "number",
-                  "example": 4
+                  "example": "any"
                 }
               }
             }
@@ -145,7 +179,7 @@
         ],
         "responses": {
           "200": {
-            "description": "Restaurant Updated Successfully"
+            "description": "OK"
           },
           "400": {
             "description": "Bad Request"
@@ -159,25 +193,24 @@
         }
       },
       "delete": {
-        "tags": ["Restaurants"],
-        "summary": "Delete a restaurant by ID",
-        "description": "Deletes a restaurant by ID",
-        "produces": ["application/json"],
+        "description": "",
+        "produces": [
+          "application/json"
+        ],
         "parameters": [
           {
             "name": "id",
             "in": "path",
-            "description": "Restaurant ID",
             "required": true,
             "type": "string"
           }
         ],
         "responses": {
           "200": {
-            "description": "Restaurant Deleted Successfully"
+            "description": "OK"
           },
           "404": {
-            "description": "Restaurant Not Found"
+            "description": "Not Found"
           },
           "500": {
             "description": "Internal Server Error"
@@ -187,13 +220,13 @@
     },
     "/users/": {
       "get": {
-        "tags": ["Users"],
-        "summary": "Get all users",
-        "description": "Returns a list of all users",
-        "produces": ["application/json"],
+        "description": "",
+        "produces": [
+          "application/json"
+        ],
         "responses": {
           "200": {
-            "description": "Successfully retrieved list of users"
+            "description": "OK"
           },
           "500": {
             "description": "Internal Server Error"
@@ -201,51 +234,9 @@
         }
       },
       "post": {
-        "tags": ["Users"],
-        "summary": "Create a new user",
-        "description": "Creates a new user",
-        "produces": ["application/json"],
-        "parameters": [
-          {
-            "name": "body",
-            "in": "body",
-            "required": true,
-            "schema": {
-              "type": "object",
-              "required": ["firstname", "lastname", "email", "age", "password", "address", "role"],
-              "properties": {
-                "firstname": {
-                  "type": "string",
-                  "example": "Michael"
-                },
-                "lastname": {
-                  "type": "string",
-                  "example": "Kazembe"
-                },
-                "email": {
-                  "type": "string",
-                  "example": "michael@example.com"
-                },
-                "age": {
-                  "type": "string",
-                  "example": "24"
-                },
-                "password": {
-                  "type": "string",
-                  "example": "qw2(ajaj"
-                },
-                "address": {
-                  "type": "string",
-                  "example": "123 Area 18A Lilongwe Malawi"
-                },
-                "role": {
-                  "type": "string",
-                  "enum": ["user", "admin"],
-                  "example": "admin"
-                }
-              }
-            }
-          }
+        "description": "",
+        "produces": [
+          "application/json"
         ],
         "responses": {
           "201": {
@@ -253,6 +244,9 @@
           },
           "400": {
             "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
           },
           "500": {
             "description": "Internal Server Error"
@@ -262,25 +256,27 @@
     },
     "/users/{id}": {
       "get": {
-        "tags": ["Users"],
-        "summary": "Get a user by ID",
-        "description": "Returns a user by ID",
-        "produces": ["application/json"],
+        "description": "",
+        "produces": [
+          "application/json"
+        ],
         "parameters": [
           {
             "name": "id",
             "in": "path",
-            "description": "User ID",
             "required": true,
             "type": "string"
           }
         ],
         "responses": {
           "200": {
-            "description": "User Found"
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
           },
           "404": {
-            "description": "User Not Found"
+            "description": "Not Found"
           },
           "500": {
             "description": "Internal Server Error"
@@ -288,53 +284,43 @@
         }
       },
       "put": {
-        "tags": ["Users"],
-        "summary": "Update a user by ID",
-        "description": "Updates a user by ID",
-        "produces": ["application/json"],
+        "description": "",
+        "produces": [
+          "application/json"
+        ],
         "parameters": [
           {
             "name": "id",
             "in": "path",
-            "description": "User ID",
             "required": true,
             "type": "string"
           },
           {
             "name": "body",
             "in": "body",
-            "required": true,
             "schema": {
               "type": "object",
               "properties": {
                 "firstname": {
-                  "type": "string",
-                  "example": "Michael"
+                  "example": "any"
                 },
                 "lastname": {
-                  "type": "string",
-                  "example": "Kazembe"
+                  "example": "any"
                 },
                 "email": {
-                  "type": "string",
-                  "example": "michael@example.com"
+                  "example": "any"
                 },
                 "age": {
-                  "type": "string",
-                  "example": "24"
+                  "example": "any"
                 },
                 "password": {
-                  "type": "string",
-                  "example": "qw2(ajaj"
+                  "example": "any"
                 },
                 "address": {
-                  "type": "string",
-                  "example": "123 Area 18A Lilongwe Malawi"
+                  "example": "any"
                 },
                 "role": {
-                  "type": "string",
-                  "enum": ["user", "admin"],
-                  "example": "admin"
+                  "example": "any"
                 }
               }
             }
@@ -342,7 +328,127 @@
         ],
         "responses": {
           "200": {
-            "description": "User Updated Successfully"
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "delete": {
+        "description": "",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/api-docs/api-docs": {
+      "get": {
+        "description": "",
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/{id}": {
+      "get": {
+        "description": "",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "put": {
+        "description": "",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "example": "any"
+                },
+                "cuisine": {
+                  "example": "any"
+                },
+                "location": {
+                  "example": "any"
+                },
+                "rating": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
           },
           "400": {
             "description": "Bad Request"
@@ -356,25 +462,24 @@
         }
       },
       "delete": {
-        "tags": ["Users"],
-        "summary": "Delete a user by ID",
-        "description": "Deletes a user by ID",
-        "produces": ["application/json"],
+        "description": "",
+        "produces": [
+          "application/json"
+        ],
         "parameters": [
           {
             "name": "id",
             "in": "path",
-            "description": "User ID",
             "required": true,
             "type": "string"
           }
         ],
         "responses": {
           "200": {
-            "description": "User Deleted Successfully"
+            "description": "OK"
           },
           "404": {
-            "description": "User Not Found"
+            "description": "Not Found"
           },
           "500": {
             "description": "Internal Server Error"

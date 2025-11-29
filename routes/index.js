@@ -11,8 +11,6 @@ router.use("/", swaggerRoute);
 
 // define a Home page route
 router.get("/", (req, res) => {
-  //# swagger.tags = ["Home"];
-  //# swagger.description = "Home page route";
   res.send("Welcome To The Restaurants API");
 });
 
@@ -20,7 +18,7 @@ router.get("/", (req, res) => {
 router.get("/login", passport.authenticate("github"), (req, res) => {});
 
 // define logout
-router.get("/logout", function (req, res, next) {
+router.get("/logout", (req, res, next) => {
   req.logout(function (err) {
     if (err) {
       return next(err);
