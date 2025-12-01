@@ -28,12 +28,41 @@ CSE341 - Web Services Project from BYU-Idaho Software Development Degree program
      ```
      MONGODB_URL=your_mongodb_connection_string_here
      ```
+   - Add GitHub OAuth credentials (obtain from GitHub Developer Settings):
+     ```
+     GITHUB_CLIENT_ID=your_github_client_id_here
+     GITHUB_CLIENT_SECRET=your_github_client_secret_here
+     CALLBACK_URL=http://localhost:3000/github/callback
+     ```
+   - Optional: Set the base URL for Swagger documentation:
+     ```
+     BASE_URL=http://localhost:3000
+     ```
 
 4. Run the application:
    - For development: `npm run dev`
    - For production: `npm start`
 
 The server will start on `http://localhost:3000` by default.
+
+## Authentication
+
+This API uses GitHub OAuth for authentication. To access protected endpoints (POST, PUT, DELETE for restaurants and users), users must log in via GitHub.
+
+### Login
+
+- Navigate to `http://localhost:3000/login` to initiate GitHub authentication.
+- You will be redirected to GitHub to authorize the application.
+- After authorization, you will be redirected back to the home page, logged in.
+
+### Logout
+
+- Navigate to `http://localhost:3000/logout` to log out.
+- You will be redirected to the home page, logged out.
+
+### Protected Endpoints
+
+Endpoints that require authentication are marked with an asterisk (\*) in the API Documentation tables below.
 
 ## API Documentation
 
@@ -45,9 +74,9 @@ This is a RESTful API for managing restaurants and users. Below are the availabl
 | ------ | ---------------- | ---------------------------------- | ------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------- |
 | GET    | /restaurants     | Retrieve all restaurants           | None                                                          | 200 OK: JSON array of restaurants<br>500 Internal Server Error: On failure                                                              |
 | GET    | /restaurants/:id | Retrieve a single restaurant by ID | id (string): Restaurant ID                                    | 200 OK: JSON object of the restaurant<br>404 Not Found: If restaurant not found<br>500 Internal Server Error: On failure                |
-| POST   | /restaurants     | Create a new restaurant            | None (body: JSON with name, cuisine, location, rating)        | 201 Created: JSON with message and restaurantId<br>400 Bad Request: If required fields missing<br>500 Internal Server Error: On failure |
-| PUT    | /restaurants/:id | Update a restaurant by ID          | id (string): Restaurant ID (body: JSON with fields to update) | 200 OK: JSON with message<br>404 Not Found: If restaurant not found<br>500 Internal Server Error: On failure                            |
-| DELETE | /restaurants/:id | Delete a restaurant by ID          | id (string): Restaurant ID                                    | 200 OK: JSON with message<br>404 Not Found: If restaurant not found<br>500 Internal Server Error: On failure                            |
+| POST   | /restaurants     | Create a new restaurant*           | None (body: JSON with name, cuisine, location, rating)        | 201 Created: JSON with message and restaurantId<br>400 Bad Request: If required fields missing<br>500 Internal Server Error: On failure |
+| PUT    | /restaurants/:id | Update a restaurant by ID*         | id (string): Restaurant ID (body: JSON with fields to update) | 200 OK: JSON with message<br>404 Not Found: If restaurant not found<br>500 Internal Server Error: On failure                            |
+| DELETE | /restaurants/:id | Delete a restaurant by ID*         | id (string): Restaurant ID                                    | 200 OK: JSON with message<br>404 Not Found: If restaurant not found<br>500 Internal Server Error: On failure                            |
 
 ### Endpoints for Users
 
@@ -55,9 +84,9 @@ This is a RESTful API for managing restaurants and users. Below are the availabl
 | ------ | ---------- | ---------------------------- | ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------- |
 | GET    | /users     | Retrieve all users           | None                                                                            | 200 OK: JSON array of users<br>500 Internal Server Error: On failure                                                                  |
 | GET    | /users/:id | Retrieve a single user by ID | id (string): User ID                                                            | 200 OK: JSON object of the user<br>404 Not Found: If user not found<br>500 Internal Server Error: On failure                          |
-| POST   | /users     | Create a new user            | None (body: JSON with firstname, lastname, email, age, password, address, role) | 201 Created: JSON with message and userId<br>400 Bad Request: If required fields missing or invalid data<br>500 Internal Server Error |
-| PUT    | /users/:id | Update a user by ID          | id (string): User ID (body: JSON with fields to update)                         | 200 OK: JSON with message<br>404 Not Found: If user not found<br>500 Internal Server Error: On failure                                |
-| DELETE | /users/:id | Delete a user by ID          | id (string): User ID                                                            | 200 OK: JSON with message<br>404 Not Found: If user not found<br>500 Internal Server Error: On failure                                |
+| POST   | /users     | Create a new user*           | None (body: JSON with firstname, lastname, email, age, password, address, role) | 201 Created: JSON with message and userId<br>400 Bad Request: If required fields missing or invalid data<br>500 Internal Server Error |
+| PUT    | /users/:id | Update a user by ID*         | id (string): User ID (body: JSON with fields to update)                         | 200 OK: JSON with message<br>404 Not Found: If user not found<br>500 Internal Server Error: On failure                                |
+| DELETE | /users/:id | Delete a user by ID*         | id (string): User ID                                                            | 200 OK: JSON with message<br>404 Not Found: If user not found<br>500 Internal Server Error: On failure                                |
 
 ### Example Requests for Restaurants
 
@@ -209,4 +238,8 @@ This project includes interactive API documentation using Swagger UI.
 - Express.js
 - MongoDB
 - Express-validator
-- Swagger-ui
+- Passport.js
+- Passport-GitHub2
+- Express-session
+- Swagger-ui-express
+- Swagger-autogen
